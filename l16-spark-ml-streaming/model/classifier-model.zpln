@@ -1,0 +1,798 @@
+﻿{
+ "paragraphs": [
+  {
+   "text": "import org.apache.spark.sql.types.{DoubleType, StringType, StructField, StructType}\nimport org.apache.spark.sql.{functions => sf}",
+   "user": "anonymous",
+   "dateUpdated": "2022-10-21T14:32:18+0300",
+   "progress": 0.0,
+   "config": {},
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "TEXT",
+      "data": "import org.apache.spark.sql.types.{DoubleType, StringType, StructField, StructType}\nimport org.apache.spark.sql.{functions=>sf}\n"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {},
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1666351938290_985234226",
+   "id": "paragraph_1666351938290_985234226",
+   "dateCreated": "2022-10-21T14:32:18+0300",
+   "dateStarted": "2022-10-21T14:32:18+0300",
+   "dateFinished": "2022-10-21T14:32:18+0300",
+   "status": "FINISHED"
+  },
+  {
+   "text": "// Change the path according to your environment\nval basePath = \"/home/ayratsa/dev/spark_otus/l16-spark-ml-streaming/\"",
+   "user": "anonymous",
+   "dateUpdated": "2022-10-21T14:32:18+0300",
+   "progress": 0.0,
+   "config": {},
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "TEXT",
+      "data": "\u001b[1m\u001b[34mbasePath\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m = /home/ayratsa/dev/spark_otus/l16-spark-ml-streaming/\n"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {},
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1666351938353_1048377220",
+   "id": "paragraph_1666351938353_1048377220",
+   "dateCreated": "2022-10-21T14:32:18+0300",
+   "dateStarted": "2022-10-21T14:32:18+0300",
+   "dateFinished": "2022-10-21T14:32:18+0300",
+   "status": "FINISHED"
+  },
+  {
+   "text": "%md\n#### Load data",
+   "user": "anonymous",
+   "dateUpdated": "2022-10-21T14:32:18+0300",
+   "progress": 0.0,
+   "config": {},
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "HTML",
+      "data": "<div class=\"markdown-body\">\n<h4>Load data</h4>\n\n</div>"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {},
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1666351938515_764047968",
+   "id": "paragraph_1666351938515_764047968",
+   "dateCreated": "2022-10-21T14:32:18+0300",
+   "dateStarted": "2022-10-21T14:32:18+0300",
+   "dateFinished": "2022-10-21T14:32:18+0300",
+   "status": "FINISHED"
+  },
+  {
+   "text": "// Define CSV file schema...\nval schema = StructType(\n    Array(\n        StructField(\"sepal_length\", DoubleType),\n        StructField(\"sepal_width\", DoubleType),\n        StructField(\"petal_length\", DoubleType),\n        StructField(\"petal_width\", DoubleType),\n        StructField(\"species\", StringType)\n    )\n)",
+   "user": "anonymous",
+   "dateUpdated": "2022-10-21T14:32:18+0300",
+   "progress": 0.0,
+   "config": {
+    "editorSetting": {
+     "language": "scala",
+     "editOnDblClick": false,
+     "completionKey": "TAB",
+     "completionSupport": true
+    },
+    "colWidth": 12.0,
+    "editorMode": "ace/mode/scala",
+    "fontSize": 9.0,
+    "results": {},
+    "enabled": true
+   },
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "TEXT",
+      "data": "\u001b[1m\u001b[34mschema\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.types.StructType\u001b[0m = StructType(StructField(sepal_length,DoubleType,true), StructField(sepal_width,DoubleType,true), StructField(petal_length,DoubleType,true), StructField(petal_width,DoubleType,true), StructField(species,StringType,true))\n"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {},
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1666351938631_463332081",
+   "id": "paragraph_1666351938631_463332081",
+   "dateCreated": "2022-10-21T14:32:18+0300",
+   "dateStarted": "2022-10-21T14:32:19+0300",
+   "dateFinished": "2022-10-21T14:32:19+0300",
+   "status": "FINISHED"
+  },
+  {
+   "text": "// and load data from CSV file\nval df0 = spark.read.format(\"csv\")\n        .option(\"delimiter\", \",\")\n        .option(\"header\", \"true\")\n        .schema(schema)\n        .load(basePath + \"IRIS.csv\")\n",
+   "user": "anonymous",
+   "dateUpdated": "2022-10-21T14:32:19+0300",
+   "progress": 0.0,
+   "config": {},
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "TEXT",
+      "data": "\u001b[1m\u001b[34mdf0\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m = [sepal_length: double, sepal_width: double ... 3 more fields]\n"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {},
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1666351939001_1337378764",
+   "id": "paragraph_1666351939001_1337378764",
+   "dateCreated": "2022-10-21T14:32:19+0300",
+   "dateStarted": "2022-10-21T14:32:19+0300",
+   "dateFinished": "2022-10-21T14:32:19+0300",
+   "status": "FINISHED"
+  },
+  {
+   "text": "df0.show(10, truncate = false)",
+   "user": "anonymous",
+   "dateUpdated": "2022-10-21T14:32:19+0300",
+   "progress": 0.0,
+   "config": {},
+   "settings": {
+    "params": {
+     "bdtMeta": {
+      "inlay": {}
+     }
+    },
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "TEXT",
+      "data": "+------------+-----------+------------+-----------+-----------+\n|sepal_length|sepal_width|petal_length|petal_width|species    |\n+------------+-----------+------------+-----------+-----------+\n|5.1         |3.5        |1.4         |0.2        |Iris-setosa|\n|4.9         |3.0        |1.4         |0.2        |Iris-setosa|\n|4.7         |3.2        |1.3         |0.2        |Iris-setosa|\n|4.6         |3.1        |1.5         |0.2        |Iris-setosa|\n|5.0         |3.6        |1.4         |0.2        |Iris-setosa|\n|5.4         |3.9        |1.7         |0.4        |Iris-setosa|\n|4.6         |3.4        |1.4         |0.3        |Iris-setosa|\n|5.0         |3.4        |1.5         |0.2        |Iris-setosa|\n|4.4         |2.9        |1.4         |0.2        |Iris-setosa|\n|4.9         |3.1        |1.5         |0.1        |Iris-setosa|\n+------------+-----------+------------+-----------+-----------+\nonly showing top 10 rows\n\n"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {
+    "jobUrl": {
+     "propertyName": "jobUrl",
+     "label": "SPARK JOB",
+     "tooltip": "View in Spark web UI",
+     "group": "spark",
+     "values": [
+      {
+       "jobUrl": "http://a-118vzhsqotc4l.omnidata.skf.com:4040/jobs/job?id=71"
+      }
+     ],
+     "interpreterSettingId": "spark"
+    }
+   },
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1666351939100_51415108",
+   "id": "paragraph_1666351939100_51415108",
+   "dateCreated": "2022-10-21T14:32:19+0300",
+   "dateStarted": "2022-10-21T14:32:19+0300",
+   "dateFinished": "2022-10-21T14:32:19+0300",
+   "status": "FINISHED"
+  },
+  {
+   "title": "",
+   "text": "%md\n#### Data preparation",
+   "user": "anonymous",
+   "dateUpdated": "2022-10-21T14:32:19+0300",
+   "progress": 0.0,
+   "config": {
+    "title": false
+   },
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "HTML",
+      "data": "<div class=\"markdown-body\">\n<h4>Data preparation</h4>\n\n</div>"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {},
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1666351939138_1871492287",
+   "id": "paragraph_1666351939138_1871492287",
+   "dateCreated": "2022-10-21T14:32:19+0300",
+   "dateStarted": "2022-10-21T14:32:19+0300",
+   "dateFinished": "2022-10-21T14:32:19+0300",
+   "status": "FINISHED"
+  },
+  {
+   "text": "// Index string columns\nimport org.apache.spark.ml.feature.StringIndexer\n\nval indexer = new StringIndexer()\n        .setInputCol(\"species\")\n        .setOutputCol(\"class\")\n        .fit(df0)\n\nval dfIndexed = indexer.transform(df0)\n\ndfIndexed.show(10, truncate = false)",
+   "user": "anonymous",
+   "dateUpdated": "2022-10-21T14:32:19+0300",
+   "progress": 0.0,
+   "config": {},
+   "settings": {
+    "params": {
+     "bdtMeta": {
+      "inlay": {}
+     }
+    },
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "TEXT",
+      "data": "+------------+-----------+------------+-----------+-----------+-----+\n|sepal_length|sepal_width|petal_length|petal_width|species    |class|\n+------------+-----------+------------+-----------+-----------+-----+\n|5.1         |3.5        |1.4         |0.2        |Iris-setosa|0.0  |\n|4.9         |3.0        |1.4         |0.2        |Iris-setosa|0.0  |\n|4.7         |3.2        |1.3         |0.2        |Iris-setosa|0.0  |\n|4.6         |3.1        |1.5         |0.2        |Iris-setosa|0.0  |\n|5.0         |3.6        |1.4         |0.2        |Iris-setosa|0.0  |\n|5.4         |3.9        |1.7         |0.4        |Iris-setosa|0.0  |\n|4.6         |3.4        |1.4         |0.3        |Iris-setosa|0.0  |\n|5.0         |3.4        |1.5         |0.2        |Iris-setosa|0.0  |\n|4.4         |2.9        |1.4         |0.2        |Iris-setosa|0.0  |\n|4.9         |3.1        |1.5         |0.1        |Iris-setosa|0.0  |\n+------------+-----------+------------+-----------+-----------+-----+\nonly showing top 10 rows\n\nimport org.apache.spark.ml.feature.StringIndexer\n\u001b[1m\u001b[34mindexer\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.ml.feature.StringIndexerModel\u001b[0m = StringIndexerModel: uid=strIdx_ce35b20fed7a, handleInvalid=error\n\u001b[1m\u001b[34mdfIndexed\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m = [sepal_length: double, sepal_width: double ... 4 more fields]\n"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {
+    "jobUrl": {
+     "propertyName": "jobUrl",
+     "label": "SPARK JOB",
+     "tooltip": "View in Spark web UI",
+     "group": "spark",
+     "values": [
+      {
+       "jobUrl": "http://a-118vzhsqotc4l.omnidata.skf.com:4040/jobs/job?id=72"
+      },
+      {
+       "jobUrl": "http://a-118vzhsqotc4l.omnidata.skf.com:4040/jobs/job?id=73"
+      }
+     ],
+     "interpreterSettingId": "spark"
+    }
+   },
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1666351939194_920868429",
+   "id": "paragraph_1666351939194_920868429",
+   "dateCreated": "2022-10-21T14:32:19+0300",
+   "dateStarted": "2022-10-21T14:32:19+0300",
+   "dateFinished": "2022-10-21T14:32:20+0300",
+   "status": "FINISHED"
+  },
+  {
+   "text": "// Get some stats\n// And make sure that all classes are balanced\ndfIndexed.select(sf.col(\"species\"), sf.col(\"class\"))\n        .groupBy(sf.col(\"class\"))\n        .agg(\n            sf.first(sf.col(\"species\")).alias(\"species\"),\n            sf.count(sf.col(\"species\")).alias(\"count\"))\n        .show()",
+   "user": "anonymous",
+   "dateUpdated": "2022-10-21T14:32:19+0300",
+   "progress": 0.0,
+   "config": {},
+   "settings": {
+    "params": {
+     "bdtMeta": {
+      "inlay": {}
+     }
+    },
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "TEXT",
+      "data": "+-----+---------------+-----+\n|class|        species|count|\n+-----+---------------+-----+\n|  0.0|    Iris-setosa|   50|\n|  1.0|Iris-versicolor|   50|\n|  2.0| Iris-virginica|   50|\n+-----+---------------+-----+\n\n"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {
+    "jobUrl": {
+     "propertyName": "jobUrl",
+     "label": "SPARK JOB",
+     "tooltip": "View in Spark web UI",
+     "group": "spark",
+     "values": [
+      {
+       "jobUrl": "http://a-118vzhsqotc4l.omnidata.skf.com:4040/jobs/job?id=74"
+      },
+      {
+       "jobUrl": "http://a-118vzhsqotc4l.omnidata.skf.com:4040/jobs/job?id=75"
+      },
+      {
+       "jobUrl": "http://a-118vzhsqotc4l.omnidata.skf.com:4040/jobs/job?id=76"
+      },
+      {
+       "jobUrl": "http://a-118vzhsqotc4l.omnidata.skf.com:4040/jobs/job?id=77"
+      },
+      {
+       "jobUrl": "http://a-118vzhsqotc4l.omnidata.skf.com:4040/jobs/job?id=78"
+      }
+     ],
+     "interpreterSettingId": "spark"
+    }
+   },
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1666351939472_1698176644",
+   "id": "paragraph_1666351939472_1698176644",
+   "dateCreated": "2022-10-21T14:32:19+0300",
+   "dateStarted": "2022-10-21T14:32:19+0300",
+   "dateFinished": "2022-10-21T14:32:21+0300",
+   "status": "FINISHED"
+  },
+  {
+   "text": "// Collect features to a vector\nimport org.apache.spark.ml.feature.VectorAssembler\nval dfPrepared = dfIndexed\nval featureColumns = Array(\"sepal_length\", \"sepal_width\", \"petal_length\", \"petal_width\")\nval assembler = new VectorAssembler()\n        .setInputCols(featureColumns)\n        .setOutputCol(\"features\") \n\nval dfML = assembler.transform(dfPrepared).select( \"features\", \"class\")\ndfML.show(5, truncate = false)\n",
+   "user": "anonymous",
+   "dateUpdated": "2022-10-21T14:32:19+0300",
+   "progress": 0.0,
+   "config": {},
+   "settings": {
+    "params": {
+     "bdtMeta": {
+      "inlay": {}
+     }
+    },
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "TEXT",
+      "data": "+-----------------+-----+\n|features         |class|\n+-----------------+-----+\n|[5.1,3.5,1.4,0.2]|0.0  |\n|[4.9,3.0,1.4,0.2]|0.0  |\n|[4.7,3.2,1.3,0.2]|0.0  |\n|[4.6,3.1,1.5,0.2]|0.0  |\n|[5.0,3.6,1.4,0.2]|0.0  |\n+-----------------+-----+\nonly showing top 5 rows\n\nimport org.apache.spark.ml.feature.VectorAssembler\n\u001b[1m\u001b[34mdfPrepared\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m = [sepal_length: double, sepal_width: double ... 4 more fields]\n\u001b[1m\u001b[34mfeatureColumns\u001b[0m: \u001b[1m\u001b[32mArray[String]\u001b[0m = Array(sepal_length, sepal_width, petal_length, petal_width)\n\u001b[1m\u001b[34massembler\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.ml.feature.VectorAssembler\u001b[0m = VectorAssembler: uid=vecAssembler_d308cea51878, handleInvalid=error, numInputCols=4\n\u001b[1m\u001b[34mdfML\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m = [features: vector, class: double]\n"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {
+    "jobUrl": {
+     "propertyName": "jobUrl",
+     "label": "SPARK JOB",
+     "tooltip": "View in Spark web UI",
+     "group": "spark",
+     "values": [
+      {
+       "jobUrl": "http://a-118vzhsqotc4l.omnidata.skf.com:4040/jobs/job?id=79"
+      }
+     ],
+     "interpreterSettingId": "spark"
+    }
+   },
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1666351939697_99062571",
+   "id": "paragraph_1666351939697_99062571",
+   "dateCreated": "2022-10-21T14:32:19+0300",
+   "dateStarted": "2022-10-21T14:32:20+0300",
+   "dateFinished": "2022-10-21T14:32:22+0300",
+   "status": "FINISHED"
+  },
+  {
+   "text": "%md\n#### Train model",
+   "user": "anonymous",
+   "dateUpdated": "2022-10-21T14:32:19+0300",
+   "progress": 0.0,
+   "config": {},
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "HTML",
+      "data": "<div class=\"markdown-body\">\n<h4>Train model</h4>\n\n</div>"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {},
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1666351939736_916831221",
+   "id": "paragraph_1666351939736_916831221",
+   "dateCreated": "2022-10-21T14:32:19+0300",
+   "dateStarted": "2022-10-21T14:32:19+0300",
+   "dateFinished": "2022-10-21T14:32:19+0300",
+   "status": "FINISHED"
+  },
+  {
+   "text": "// Prepare training and test data\nval dfs = dfML.randomSplit(Array(0.7, 0.3))\nval dfTrain = dfs(0)\nval dfTest = dfs(1)",
+   "user": "anonymous",
+   "dateUpdated": "2022-10-21T14:32:20+0300",
+   "progress": 0.0,
+   "config": {},
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "TEXT",
+      "data": "\u001b[1m\u001b[34mdfs\u001b[0m: \u001b[1m\u001b[32mArray[org.apache.spark.sql.Dataset[org.apache.spark.sql.Row]]\u001b[0m = Array([features: vector, class: double], [features: vector, class: double])\n\u001b[1m\u001b[34mdfTrain\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.Dataset[org.apache.spark.sql.Row]\u001b[0m = [features: vector, class: double]\n\u001b[1m\u001b[34mdfTest\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.Dataset[org.apache.spark.sql.Row]\u001b[0m = [features: vector, class: double]\n"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {},
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1666351939809_1750935417",
+   "id": "paragraph_1666351939809_1750935417",
+   "dateCreated": "2022-10-21T14:32:19+0300",
+   "dateStarted": "2022-10-21T14:32:22+0300",
+   "dateFinished": "2022-10-21T14:32:22+0300",
+   "status": "FINISHED"
+  },
+  {
+   "text": "// Train and apply model\nimport org.apache.spark.ml.classification.DecisionTreeClassifier\n\nval lr = new DecisionTreeClassifier()\n        .setLabelCol(\"class\")\n        .setFeaturesCol(\"features\")\nval lrModel = lr.fit(dfTrain)\nval pred = lrModel.transform(dfTest)\npred.show(5, truncate = false)",
+   "user": "anonymous",
+   "dateUpdated": "2022-10-21T14:32:20+0300",
+   "progress": 100.0,
+   "config": {},
+   "settings": {
+    "params": {
+     "bdtMeta": {
+      "inlay": {}
+     }
+    },
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "TEXT",
+      "data": "+-----------------+-----+--------------+-------------+----------+\n|features         |class|rawPrediction |probability  |prediction|\n+-----------------+-----+--------------+-------------+----------+\n|[4.4,3.0,1.3,0.2]|0.0  |[34.0,0.0,0.0]|[1.0,0.0,0.0]|0.0       |\n|[4.6,3.1,1.5,0.2]|0.0  |[34.0,0.0,0.0]|[1.0,0.0,0.0]|0.0       |\n|[4.6,3.6,1.0,0.2]|0.0  |[34.0,0.0,0.0]|[1.0,0.0,0.0]|0.0       |\n|[4.8,3.0,1.4,0.1]|0.0  |[34.0,0.0,0.0]|[1.0,0.0,0.0]|0.0       |\n|[4.8,3.4,1.6,0.2]|0.0  |[34.0,0.0,0.0]|[1.0,0.0,0.0]|0.0       |\n+-----------------+-----+--------------+-------------+----------+\nonly showing top 5 rows\n\nimport org.apache.spark.ml.classification.DecisionTreeClassifier\n\u001b[1m\u001b[34mlr\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.ml.classification.DecisionTreeClassifier\u001b[0m = dtc_17dfeda458f8\n\u001b[1m\u001b[34mlrModel\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.ml.classification.DecisionTreeClassificationModel\u001b[0m = DecisionTreeClassificationModel: uid=dtc_17dfeda458f8, depth=5, numNodes=13, numClasses=3, numFeatures=4\n\u001b[1m\u001b[34mpred\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m = [features: vector, class: double ... 3 more fields]\n"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {
+    "jobUrl": {
+     "propertyName": "jobUrl",
+     "label": "SPARK JOB",
+     "tooltip": "View in Spark web UI",
+     "group": "spark",
+     "values": [
+      {
+       "jobUrl": "http://a-118vzhsqotc4l.omnidata.skf.com:4040/jobs/job?id=80"
+      },
+      {
+       "jobUrl": "http://a-118vzhsqotc4l.omnidata.skf.com:4040/jobs/job?id=81"
+      },
+      {
+       "jobUrl": "http://a-118vzhsqotc4l.omnidata.skf.com:4040/jobs/job?id=82"
+      },
+      {
+       "jobUrl": "http://a-118vzhsqotc4l.omnidata.skf.com:4040/jobs/job?id=83"
+      },
+      {
+       "jobUrl": "http://a-118vzhsqotc4l.omnidata.skf.com:4040/jobs/job?id=84"
+      },
+      {
+       "jobUrl": "http://a-118vzhsqotc4l.omnidata.skf.com:4040/jobs/job?id=85"
+      },
+      {
+       "jobUrl": "http://a-118vzhsqotc4l.omnidata.skf.com:4040/jobs/job?id=86"
+      },
+      {
+       "jobUrl": "http://a-118vzhsqotc4l.omnidata.skf.com:4040/jobs/job?id=87"
+      },
+      {
+       "jobUrl": "http://a-118vzhsqotc4l.omnidata.skf.com:4040/jobs/job?id=88"
+      }
+     ],
+     "interpreterSettingId": "spark"
+    }
+   },
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1666351940183_800138868",
+   "id": "paragraph_1666351940183_800138868",
+   "dateCreated": "2022-10-21T14:32:20+0300",
+   "dateStarted": "2022-10-21T14:32:22+0300",
+   "dateFinished": "2022-10-21T14:32:24+0300",
+   "status": "FINISHED"
+  },
+  {
+   "text": "%md\n#### Decode predicted classes back to class names",
+   "user": "anonymous",
+   "dateUpdated": "2022-10-21T14:32:20+0300",
+   "progress": 0.0,
+   "config": {},
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "HTML",
+      "data": "<div class=\"markdown-body\">\n<h4>Decode predicted classes back to class names</h4>\n\n</div>"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {},
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1666351940226_637174283",
+   "id": "paragraph_1666351940226_637174283",
+   "dateCreated": "2022-10-21T14:32:20+0300",
+   "dateStarted": "2022-10-21T14:32:20+0300",
+   "dateFinished": "2022-10-21T14:32:20+0300",
+   "status": "FINISHED"
+  },
+  {
+   "text": "import org.apache.spark.ml.feature.IndexToString\n\nval reverseIndexer = new IndexToString()\n        .setInputCol(\"prediction\")\n        .setOutputCol(\"predictedSpecies\")\n        .setLabels(indexer.labelsArray(0))\n\nreverseIndexer.transform(pred).show(5, truncate = false)",
+   "user": "anonymous",
+   "dateUpdated": "2022-10-21T14:32:20+0300",
+   "progress": 0.0,
+   "config": {},
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "TEXT",
+      "data": "+-----------------+-----+--------------+-------------+----------+----------------+\n|features         |class|rawPrediction |probability  |prediction|predictedSpecies|\n+-----------------+-----+--------------+-------------+----------+----------------+\n|[4.4,3.0,1.3,0.2]|0.0  |[34.0,0.0,0.0]|[1.0,0.0,0.0]|0.0       |Iris-setosa     |\n|[4.6,3.1,1.5,0.2]|0.0  |[34.0,0.0,0.0]|[1.0,0.0,0.0]|0.0       |Iris-setosa     |\n|[4.6,3.6,1.0,0.2]|0.0  |[34.0,0.0,0.0]|[1.0,0.0,0.0]|0.0       |Iris-setosa     |\n|[4.8,3.0,1.4,0.1]|0.0  |[34.0,0.0,0.0]|[1.0,0.0,0.0]|0.0       |Iris-setosa     |\n|[4.8,3.4,1.6,0.2]|0.0  |[34.0,0.0,0.0]|[1.0,0.0,0.0]|0.0       |Iris-setosa     |\n+-----------------+-----+--------------+-------------+----------+----------------+\nonly showing top 5 rows\n\nimport org.apache.spark.ml.feature.IndexToString\n\u001b[1m\u001b[34mreverseIndexer\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.ml.feature.IndexToString\u001b[0m = idxToStr_2d13270a73aa\n"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {
+    "jobUrl": {
+     "propertyName": "jobUrl",
+     "label": "SPARK JOB",
+     "tooltip": "View in Spark web UI",
+     "group": "spark",
+     "values": [
+      {
+       "jobUrl": "http://a-118vzhsqotc4l.omnidata.skf.com:4040/jobs/job?id=89"
+      }
+     ],
+     "interpreterSettingId": "spark"
+    }
+   },
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1666351940311_1893108355",
+   "id": "paragraph_1666351940311_1893108355",
+   "dateCreated": "2022-10-21T14:32:20+0300",
+   "dateStarted": "2022-10-21T14:32:22+0300",
+   "dateFinished": "2022-10-21T14:32:25+0300",
+   "status": "FINISHED"
+  },
+  {
+   "text": "// Evaluate the accuracy of the model\nimport org.apache.spark.ml.evaluation.MulticlassClassificationEvaluator\nval evaluator = new MulticlassClassificationEvaluator()\n        .setLabelCol(\"class\")\n        .setPredictionCol(\"prediction\")\nval accuracy = evaluator.setMetricName(\"accuracy\").evaluate(pred)\nval precision =  evaluator.setMetricName(\"precisionByLabel\").evaluate(pred)\nval recall =  evaluator.setMetricName(\"recallByLabel\").evaluate(pred)\nval truePositiveRate =  evaluator.setMetricName(\"truePositiveRateByLabel\").evaluate(pred)\nval falsePositiveRate =  evaluator.setMetricName(\"falsePositiveRateByLabel\").evaluate(pred)\n",
+   "user": "anonymous",
+   "dateUpdated": "2022-10-21T14:32:20+0300",
+   "progress": 0.0,
+   "config": {},
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "TEXT",
+      "data": "import org.apache.spark.ml.evaluation.MulticlassClassificationEvaluator\n\u001b[1m\u001b[34mevaluator\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.ml.evaluation.MulticlassClassificationEvaluator\u001b[0m = MulticlassClassificationEvaluator: uid=mcEval_30e1137ccf7e, metricName=falsePositiveRateByLabel, metricLabel=0.0, beta=1.0, eps=1.0E-15\n\u001b[1m\u001b[34maccuracy\u001b[0m: \u001b[1m\u001b[32mDouble\u001b[0m = 0.9574468085106383\n\u001b[1m\u001b[34mprecision\u001b[0m: \u001b[1m\u001b[32mDouble\u001b[0m = 1.0\n\u001b[1m\u001b[34mrecall\u001b[0m: \u001b[1m\u001b[32mDouble\u001b[0m = 1.0\n\u001b[1m\u001b[34mtruePositiveRate\u001b[0m: \u001b[1m\u001b[32mDouble\u001b[0m = 1.0\n\u001b[1m\u001b[34mfalsePositiveRate\u001b[0m: \u001b[1m\u001b[32mDouble\u001b[0m = 0.0\n"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {
+    "jobUrl": {
+     "propertyName": "jobUrl",
+     "label": "SPARK JOB",
+     "tooltip": "View in Spark web UI",
+     "group": "spark",
+     "values": [
+      {
+       "jobUrl": "http://a-118vzhsqotc4l.omnidata.skf.com:4040/jobs/job?id=90"
+      },
+      {
+       "jobUrl": "http://a-118vzhsqotc4l.omnidata.skf.com:4040/jobs/job?id=91"
+      },
+      {
+       "jobUrl": "http://a-118vzhsqotc4l.omnidata.skf.com:4040/jobs/job?id=92"
+      },
+      {
+       "jobUrl": "http://a-118vzhsqotc4l.omnidata.skf.com:4040/jobs/job?id=93"
+      },
+      {
+       "jobUrl": "http://a-118vzhsqotc4l.omnidata.skf.com:4040/jobs/job?id=94"
+      }
+     ],
+     "interpreterSettingId": "spark"
+    }
+   },
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1666351940434_2054570997",
+   "id": "paragraph_1666351940434_2054570997",
+   "dateCreated": "2022-10-21T14:32:20+0300",
+   "dateStarted": "2022-10-21T14:32:24+0300",
+   "dateFinished": "2022-10-21T14:32:26+0300",
+   "status": "FINISHED"
+  },
+  {
+   "text": "%md\n#### Build a pipeline",
+   "user": "anonymous",
+   "dateUpdated": "2022-10-21T14:32:20+0300",
+   "progress": 0.0,
+   "config": {},
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "HTML",
+      "data": "<div class=\"markdown-body\">\n<h4>Build a pipeline</h4>\n\n</div>"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {},
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1666351940733_1968340445",
+   "id": "paragraph_1666351940733_1968340445",
+   "dateCreated": "2022-10-21T14:32:20+0300",
+   "dateStarted": "2022-10-21T14:32:20+0300",
+   "dateFinished": "2022-10-21T14:32:20+0300",
+   "status": "FINISHED"
+  },
+  {
+   "text": "import org.apache.spark.ml.Pipeline\nval pipeline = new Pipeline().setStages(Array(indexer, assembler, lrModel, reverseIndexer))",
+   "user": "anonymous",
+   "dateUpdated": "2022-10-21T14:32:20+0300",
+   "progress": 0.0,
+   "config": {},
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "TEXT",
+      "data": "import org.apache.spark.ml.Pipeline\n\u001b[1m\u001b[34mpipeline\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.ml.Pipeline\u001b[0m = pipeline_90ffc117987f\n"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {},
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1666351940773_1099588816",
+   "id": "paragraph_1666351940773_1099588816",
+   "dateCreated": "2022-10-21T14:32:20+0300",
+   "dateStarted": "2022-10-21T14:32:25+0300",
+   "dateFinished": "2022-10-21T14:32:27+0300",
+   "status": "FINISHED"
+  },
+  {
+   "text": "val Array(trainingData, testData) = df0.randomSplit(Array(0.7, 0.3))\nval pipelineModel = pipeline.fit(trainingData)",
+   "user": "anonymous",
+   "dateUpdated": "2022-10-21T14:32:21+0300",
+   "progress": 0.0,
+   "config": {},
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": [
+     {
+      "type": "TEXT",
+      "data": "\u001b[1m\u001b[34mtrainingData\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.Dataset[org.apache.spark.sql.Row]\u001b[0m = [sepal_length: double, sepal_width: double ... 3 more fields]\n\u001b[1m\u001b[34mtestData\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.Dataset[org.apache.spark.sql.Row]\u001b[0m = [sepal_length: double, sepal_width: double ... 3 more fields]\n\u001b[1m\u001b[34mpipelineModel\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.ml.PipelineModel\u001b[0m = pipeline_90ffc117987f\n"
+     }
+    ]
+   },
+   "apps": [],
+   "runtimeInfos": {},
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1666351940892_1280929341",
+   "id": "paragraph_1666351940892_1280929341",
+   "dateCreated": "2022-10-21T14:32:20+0300",
+   "dateStarted": "2022-10-21T14:32:27+0300",
+   "dateFinished": "2022-10-21T14:32:27+0300",
+   "status": "FINISHED"
+  },
+  {
+   "text": "// Save the whole pipeline\npipelineModel.write.overwrite().save(basePath + \"pipelineModel\")\n",
+   "user": "anonymous",
+   "dateUpdated": "2022-10-21T14:32:21+0300",
+   "progress": 100.0,
+   "config": {},
+   "settings": {
+    "params": {},
+    "forms": {}
+   },
+   "results": {
+    "code": "SUCCESS",
+    "msg": []
+   },
+   "apps": [],
+   "runtimeInfos": {
+    "jobUrl": {
+     "propertyName": "jobUrl",
+     "label": "SPARK JOB",
+     "tooltip": "View in Spark web UI",
+     "group": "spark",
+     "values": [
+      {
+       "jobUrl": "http://a-118vzhsqotc4l.omnidata.skf.com:4040/jobs/job?id=95"
+      },
+      {
+       "jobUrl": "http://a-118vzhsqotc4l.omnidata.skf.com:4040/jobs/job?id=96"
+      },
+      {
+       "jobUrl": "http://a-118vzhsqotc4l.omnidata.skf.com:4040/jobs/job?id=97"
+      },
+      {
+       "jobUrl": "http://a-118vzhsqotc4l.omnidata.skf.com:4040/jobs/job?id=98"
+      },
+      {
+       "jobUrl": "http://a-118vzhsqotc4l.omnidata.skf.com:4040/jobs/job?id=99"
+      },
+      {
+       "jobUrl": "http://a-118vzhsqotc4l.omnidata.skf.com:4040/jobs/job?id=100"
+      },
+      {
+       "jobUrl": "http://a-118vzhsqotc4l.omnidata.skf.com:4040/jobs/job?id=101"
+      }
+     ],
+     "interpreterSettingId": "spark"
+    }
+   },
+   "progressUpdateIntervalMs": 500.0,
+   "jobName": "paragraph_1666351941039_2107358890",
+   "id": "paragraph_1666351941039_2107358890",
+   "dateCreated": "2022-10-21T14:32:21+0300",
+   "dateStarted": "2022-10-21T14:32:27+0300",
+   "dateFinished": "2022-10-21T14:32:29+0300",
+   "status": "FINISHED"
+  }
+ ],
+ "name": "Zeppelin Notebook",
+ "id": "",
+ "noteParams": {},
+ "noteForms": {},
+ "angularObjects": {},
+ "config": {
+  "isZeppelinNotebookCronEnable": false,
+  "looknfeel": "default",
+  "personalizedMode": "false"
+ },
+ "info": {}
+}
