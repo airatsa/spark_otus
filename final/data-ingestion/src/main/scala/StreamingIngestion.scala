@@ -64,15 +64,16 @@ object StreamingIngestion {
       sf.month(colTs).as("month"),
       sf.dayofmonth(colTs).as("day"),
       sf.hour(colTs).as("hour"),
-      sf.minute(colTs).as("minute")
-    ).drop(sf.col("date"))
+      sf.minute(colTs).as("minute"),
+      sf.second(colTs).as("second")
+    ).drop("date", "timestamp")
 
-//    df.writeStream
-//      .format("console")
-//      .outputMode("append")
-//      .trigger(Trigger.ProcessingTime(runtimeConfig.get.triggerPeriod, TimeUnit.SECONDS))
-//      .start()
-//      .awaitTermination()
+    //    df.writeStream
+    //      .format("console")
+    //      .outputMode("append")
+    //      .trigger(Trigger.ProcessingTime(runtimeConfig.get.triggerPeriod, TimeUnit.SECONDS))
+    //      .start()
+    //      .awaitTermination()
 
     val query = df.writeStream
       .outputMode(OutputMode.Append())
