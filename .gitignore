@@ -3,4 +3,4 @@ target/
 .bsp/
 *.class
 *.log
-
+build.properties
