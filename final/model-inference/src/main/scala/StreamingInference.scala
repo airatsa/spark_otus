@@ -144,7 +144,7 @@ object StreamingInference {
           .required()
           .text("Path to ML model (required)"),
         opt[String]("checkpoint-location")
-          .action((x, c) => c.copy(modelPath = x))
+          .action((x, c) => c.copy(checkpointLocation = x))
           .optional()
           .text("Spark checkpoint location (optional)"),
       )
