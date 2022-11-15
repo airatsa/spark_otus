@@ -7,6 +7,7 @@ import scopt.OParser
 import java.util.concurrent.TimeUnit
 
 object StreamingIngestion {
+  private val APP_NAME = "DataIngestion"
 
   def main(args: Array[String]): Unit = {
     // Parse command line arguments
@@ -14,8 +15,6 @@ object StreamingIngestion {
     if (runtimeConfig.isEmpty) {
       return
     }
-
-    val APP_NAME = "DataIngestion"
 
     val sparkConf = new SparkConf()
       .setAppName(APP_NAME)
@@ -105,7 +104,7 @@ object StreamingIngestion {
     val parser = {
       import builder._
       OParser.sequence(
-        programName("StreamingClassifier"),
+        programName(APP_NAME),
         head("app", "0.1"),
         opt[String]("kafka-endpoint")
           .action((x, c) => c.copy(kafkaEndpoint = x))
