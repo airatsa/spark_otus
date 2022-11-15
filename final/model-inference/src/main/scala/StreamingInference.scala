@@ -5,6 +5,7 @@ import org.apache.spark.sql.{SparkSession, functions => sf}
 import scopt.OParser
 
 object StreamingInference {
+  private val APP_NAME = "StreamingInference"
 
   def main(args: Array[String]): Unit = {
     // Parse command line arguments
@@ -12,8 +13,6 @@ object StreamingInference {
     if (runtimeConfig.isEmpty) {
       return
     }
-
-    val APP_NAME = "StreamingInference"
 
     val sparkConf = new SparkConf()
       .setAppName(APP_NAME)
@@ -74,9 +73,9 @@ object StreamingInference {
 
     // Define output columns of interest
     val out_cols = Seq(
-      sf.col("timestamp"),
+      sf.col("timestamp").as("Timestamp"),
       sf.col("Occupancy"),
-      sf.col("prediction").cast("integer").as("prediction")
+      sf.col("prediction").cast("integer").as("Prediction")
     )
 
     import spark.implicits._
@@ -122,7 +121,7 @@ object StreamingInference {
     val parser = {
       import builder._
       OParser.sequence(
-        programName("StreamingClassifier"),
+        programName(APP_NAME),
         head("app", "0.1"),
         opt[String]("kafka-endpoint")
           .action((x, c) => c.copy(kafkaEndpoint = x))
