@@ -100,7 +100,7 @@
     SELECT * FROM otus.taxi_facts LIMIT 10;
     SELECT * FROM otus.taxi_zones LIMIT 10;
 
-### Задание 1 Какие районы самые популярные для заказов
+### Задание 1. Какие районы самые популярные для заказов
 
     CREATE VIEW otus.pickup_areas_by_popularity AS
     SELECT tz.LocationID AS loc_id, count(tf.PULocationID) AS num_pickups, min(tz.Borough) AS borough, min(tz.Zone) AS zone, min(tz.service_zone) AS service_zone
@@ -110,13 +110,13 @@
 
     SELECT * FROM otus.pickup_areas_by_popularity;
 
-### Задание 2 В какое время происходит больше всего вызовов
+### Задание 2. В какое время происходит больше всего вызовов
     SELECT pickup_hour, count(pickup_time) AS pickup_hour
     FROM (SELECT hour(tf.tpep_pickup_datetime) AS pickup_hour, tf.tpep_pickup_datetime AS pickup_time FROM otus.taxi_facts tf) tmp
     GROUP BY pickup_hour
     ORDER BY pickup_hour ASC;
    
-### Задание 3 Витрина данных
+### Задание 3. Витрина данных
 
     CREATE VIEW otus.metrics AS
     SELECT count(tf.trip_distance) AS total_rides, min(tf.trip_distance) AS dist_min, max(tf.trip_distance) AS dist_max, avg(tf.trip_distance) AS dist_average, stddev_pop(tf.trip_distance) AS dist_std_dev
